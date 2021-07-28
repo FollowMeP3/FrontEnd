@@ -7,6 +7,7 @@ import Home from './Components/Home/Home';
 import NewPost from './Components/NewPost';
 import UserFeed from './Components/UserFeed';
 import MainFeed from './Components/MainFeed';
+import EditPost from './Components/EditPost';
 
 //NOTE: 
   //may have to change "/newPost" to :id and render router.props
@@ -14,15 +15,16 @@ import MainFeed from './Components/MainFeed';
 function App() {
   return (
     <div className="App">
-      <Link to="/newPost">Add to Day</Link>
+      <Link to="/posts">Home</Link>
+      <Link to="/posts/days">Your Feed</Link>
       <Link to="/signin">Sign In</Link>
       <main>
       <Route exact path='/signin' component={Signin} />
       <Route exact path='/signup' component={Profile} />
       <Route exact path='/welcome' component={Welcome} />
-      <Route exact path='/home' component={Home} />
-      <Route exact path="/newPost" component={NewPost} />
-      <Route exact path="/newPost" component={UserFeed} />
+      {/* <Route exact path='/home' component={Home} /> */}
+      <Route exact path='/posts' component={MainFeed} />
+      <Route exact path="/posts/days" component={UserFeed} />
       </main>
     </div>
   );

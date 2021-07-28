@@ -11,7 +11,7 @@ const MainFeed = () => {
                 <p>timestamp</p>
             </div>
             <div className="post-content">
-                <p>user's activity here</p>
+                <p>someone else's activity here</p>
                 <img src="" alt=""/>
                 <a href="">see more</a>
                 <ul className="interactions">
