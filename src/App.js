@@ -1,5 +1,6 @@
 import './App.css'
 import { Route, Link } from 'react-router-dom'
+import React, { useState } from "react";
 import Profile from './Components/Profile/Profile';
 import Signin from './Components/Signin/Signin';
 import Welcome from './Components/Welcome/Welcome';
@@ -13,6 +14,7 @@ import EditPost from './Components/EditPost';
   //may have to change "/newPost" to :id and render router.props
   //haven't routed EditPost.js yet
 function App() {
+
   return (
     <div className="App">
       <Link to="/posts">Home</Link>
@@ -25,6 +27,7 @@ function App() {
       {/* <Route exact path='/home' component={Home} /> */}
       <Route exact path='/posts' component={MainFeed} />
       <Route exact path="/posts/days" component={UserFeed} />
+      <Route exact path="posts/edit/" component={EditPost} />
       </main>
     </div>
   );

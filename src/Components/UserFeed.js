@@ -2,9 +2,14 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios';
 import NewPost from './NewPost';
+import { Route, Link } from 'react-router-dom'
+import EditPost from './EditPost';
 
 const UserFeed = () => {
     const [posts, setPosts] = useState([])
+    // const [id, setId] = useState(null)
+    // const initialState = {instance:'',imageUpload: ''};
+    // const [updatePost, setUpdatePost] = useState(initialState)
 
     useEffect(() => {
         fetchAllPosts()
@@ -22,19 +27,12 @@ const UserFeed = () => {
           });
       }
     
-    function deletePost(id) {
-        axios.delete(`/${id}`)
-        alert("item deleted")
-        console.log(`deleted post with id of ${id}`)
-    }
-
-    function openEdit(id) {
-        setPosts(() => {
-            return {
-                ...posts,
-                id:id,
-            }
+    function deletePost(_id) {
+        axios.delete(`http://localhost:5000/posts/${_id}`)
+        .then(()=> {
+            fetchAllPosts();
         })
+        console.log(`deleted post with id of ${_id}`)
     }
 
     let allPosts = posts.map(post => {
@@ -42,8 +40,10 @@ const UserFeed = () => {
             <div className="post-content">
                 <p>{post.instance}</p>
                 <img src={post.imageUpload} alt=""/>
-                <button onClick={()=> deletePost(posts._id)}>Delete</button>
-                <button onClick={()=> openEdit(posts._id)}>Edit</button>
+                <button onClick={() => deletePost(post._id)}>Delete</button>
+                <Link to={"/posts/edit/"+post._id}>
+                    <button>Edit</button>
+                </Link>
             </div>
         )
     })
