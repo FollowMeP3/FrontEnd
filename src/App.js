@@ -14,6 +14,8 @@ import EditPost from './Components/EditPost';
   //may have to change "/newPost" to :id and render router.props
   //haven't routed EditPost.js yet
 function App() {
+const initialState = {instance:'',imageUpload: ''};
+const [postData, setPostData] = useState(initialState)
 
   return (
     <div className="App">
@@ -27,7 +29,12 @@ function App() {
       {/* <Route exact path='/home' component={Home} /> */}
       <Route exact path='/posts' component={MainFeed} />
       <Route exact path="/posts/days" component={UserFeed} />
-      <Route exact path="posts/edit/" component={EditPost} />
+      {/* <Route exact path={"posts/edit/"+postData._id} component={EditPost} /> */}
+      <Route
+          exact path="/posts/edit/:id"
+          render={routerProps => (
+            <EditPost match={routerProps.match}/>
+          )} />
       </main>
     </div>
   );

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Route, Link } from 'react-router-dom'
 import axios from 'axios';
 
-const NewPost = () => {
+const NewPost = ({setPosts}) => {
     const initialState = {instance:'',imageUpload: ''};
     const [postContent, setPostContent] = useState(initialState)
     // const [instance, setInstance] = useState('')
@@ -19,7 +19,7 @@ const NewPost = () => {
         .then(res => res.json())
         .then(res => {
           console.log(res)
-          setPostContent(res)
+          setPosts(res)
         //   setInstance(res)
         //   setImageUpload(res)
         })
@@ -37,7 +37,7 @@ const NewPost = () => {
         axios.post("http://localhost:5000/posts/newpost", newPost)
         .then(res => {
             console.log(res)
-            setPostContent(res)
+            setPosts(res.data)
           })
         .catch(err => {
             console.error(err);
