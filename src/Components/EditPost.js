@@ -2,13 +2,13 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Route, Link } from 'react-router-dom'
 import axios from 'axios';
+import M from 'materialize-css'
 
 const EditPost = ({match}) => {
     const [updateData, setUpdateData] = useState([])
 
     useEffect(() => {
         getUpdateData()
-
     },[])
 
     const getUpdateData = () => {
@@ -49,8 +49,6 @@ const EditPost = ({match}) => {
             <form>
                 <label htmlFor="instance"/>
                 <textarea id="instance" cols="30" rows="10" onChange={handleChange}>{updateData.instance}</textarea>
-                <img src={updateData.imageUpload} alt=""/>
-                <input type="file" name="imageUpload" accept=".png, .jpg, .jpeg"></input>
                 <button>Gif</button>
                 <a href="/posts/days">Cancel</a>
                 <Link to="/posts/days" onClick={updatePost}>Update</Link>
@@ -61,3 +59,6 @@ const EditPost = ({match}) => {
 }
 
 export default EditPost
+
+// {/* <input type="file" name="imageUpload" accept=".png, .jpg, .jpeg"></input> */}
+// {/* <img src={updateData.imageUpload} alt=""/> */}

@@ -8,6 +8,7 @@ import NewPost from './Components/NewPost';
 import UserFeed from './Components/UserFeed';
 import MainFeed from './Components/MainFeed';
 import EditPost from './Components/EditPost';
+import SearchResults from './Components/SearchResults';
 
 //NOTE: 
   //may have to change "/newPost" to :id and render router.props
@@ -18,9 +19,15 @@ const [postData, setPostData] = useState(initialState)
 
   return (
     <div className="App">
-      <Link to="/">Home</Link>
-      <Link to="/posts/days">Your Feed</Link>
-      <Link to="/signin">Sign In</Link>
+      <nav>
+        <div className="nav-wrapper">
+            <a href="/">Explore</a>
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+              <li><a href="/posts/days">Posts and Activity</a></li>
+              <li><a href="/signin">Sign in</a></li>
+            </ul>
+        </div>
+      </nav>
       <main>
       <Route exact path='/signin' component={Signin} />
       <Route exact path='/signup' component={Profile} />
@@ -32,7 +39,12 @@ const [postData, setPostData] = useState(initialState)
           exact path="/posts/edit/:id"
           render={routerProps => (
             <EditPost match={routerProps.match}/>
-          )} />
+            )} />
+      {/* <Route
+          exact path="/:username"
+          render={routerProps => (
+            <SearchResult match={routerProps.match}/>
+            )} /> */}
       </main>
     </div>
   );

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios';
 import NewPost from './NewPost';
 import { Route, Link } from 'react-router-dom'
+import M from 'materialize-css'
 import EditPost from './EditPost';
 
 const UserFeed = () => {
@@ -34,17 +35,19 @@ const UserFeed = () => {
 
     let allPosts = posts.map(post => {
         return (
-            <div className="post-content">
-                <p>{post.instance}</p>
-                <img src={post.imageUpload} alt=""/>
-                <button onClick={() => deletePost(post._id)}>Delete</button>
-                <Link to={"/posts/edit/"+post._id}>Edit</Link>
+            <div className="post-container">
+                <p className="instance-text">{post.instance}</p>
+                {/* <img src={post.imageUpload} alt=""/> */}
+                <div className="edit-delete-container">
+                    <button onClick={() => deletePost(post._id)} className="waves-effect waves-teal btn-flat" id="delete-btn">Delete</button>
+                    <a href={"/posts/edit/"+post._id} className="waves-effect waves-teal btn-flat">Edit</a>
+                </div>
             </div>
         )
     })
 
     return (
-        <div>
+        <div className="all-posts-container">
             <NewPost setPosts={setPosts} />
             <h1>Your Feed</h1>
             <div className="user-info">

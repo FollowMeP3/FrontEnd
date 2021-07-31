@@ -1,7 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import  './Profile.css'
+import {useEffect} from 'react'
+
 const Profile = () => {
+
     return (
         <div className='new'>
             <header>

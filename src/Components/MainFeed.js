@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Route, Link } from 'react-router-dom'
 import axios from 'axios';
+import M from 'materialize-css'
 import SearchBar from './SearchBar';
 
 const MainFeed = ({match}) => {
@@ -28,8 +29,7 @@ const MainFeed = ({match}) => {
     return (
         <div>
             <SearchBar placeholder="Enter..." data={profileFeed}/>
-            <h1>Feed</h1>
-            <div><p>{feedOfProfiles}</p></div>
+            {/* <div><p>{feedOfProfiles}</p></div> */}
         </div>
     )
 }

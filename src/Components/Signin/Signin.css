@@ -1,4 +1,4 @@
-
+/* 
 .main{
     height: 100vh;
     justify-content: center;
@@ -79,11 +79,10 @@
     top: 15px;
     left: 0;
     transform: translateY(-25px) ;
-    /* font-size: larger; */
 }
 
 span{
 margin-left: 10px;
 font-size: 25px ;
 color:yellow;
-}
+} */
