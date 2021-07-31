@@ -1,24 +1,35 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
+import { Route, Link } from 'react-router-dom'
+import axios from 'axios';
+import SearchBar from './SearchBar';
+
+const MainFeed = ({match}) => {
+    const [profileFeed, setProfileFeed] = useState([])
+
+    useEffect(() => {
+        axios.get(`http://localhost:5000/`)
+        .then(res => setProfileFeed(res.data))
+        .catch(console.err)
+      }, [])
 
 
-const MainFeed = () => {
+      let feedOfProfiles = profileFeed.map(profile => {
+        return (
+            <div className="post-content">
+                <p>{profile.username}</p>
+                <p>{profile.name}</p>
+                <p>{profile.company}</p>
+                <p>{profile.occupation}</p>
+            </div>
+            )
+        })
+
     return (
         <div>
-            {/* will have to map through this data once import seed data */}
+            <SearchBar placeholder="Enter..." data={profileFeed}/>
             <h1>Feed</h1>
-            <div className="user-info">
-                <img src="" alt="" className="profile-pic"/>
-                <p>timestamp</p>
-            </div>
-            <div className="post-content">
-                <p>someone else's activity here</p>
-                <img src="" alt=""/>
-                <a href="">see more</a>
-                <ul className="interactions">
-                    <button>like</button>
-                    <button>comment</button>
-                </ul>
-            </div>
+            <div><p>{feedOfProfiles}</p></div>
         </div>
     )
 }

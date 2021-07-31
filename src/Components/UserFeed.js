@@ -7,9 +7,6 @@ import EditPost from './EditPost';
 
 const UserFeed = () => {
     const [posts, setPosts] = useState([])
-    // const [id, setId] = useState(null)
-    // const initialState = {instance:'',imageUpload: ''};
-    // const [updatePost, setUpdatePost] = useState(initialState)
 
     useEffect(() => {
         fetchAllPosts()
@@ -35,21 +32,6 @@ const UserFeed = () => {
         console.log(`deleted post with id of ${_id}`)
     }
 
-    const updatePost = () => {
-        const editedPostData = {
-            instance: posts.instance,
-            imageUpload: posts.imageUpload,
-        };
-        axios.put(`http://localhost:5000/posts/edit/${posts._id}`, editedPostData)
-        .then(res => {
-            console.log(res)
-            setPosts(res)
-          })
-        // .catch(err => {
-        //     console.error(err);
-        //  });
-    }
-
     let allPosts = posts.map(post => {
         return (
             <div className="post-content">
@@ -66,8 +48,7 @@ const UserFeed = () => {
             <NewPost setPosts={setPosts} />
             <h1>Your Feed</h1>
             <div className="user-info">
-                <img src="" alt="" className="profile-pic"/>
-                <p>timestamp</p>
+                <p>Profile info</p>
             </div>
             <p>{allPosts}</p>
         </div>

@@ -4,14 +4,11 @@ import { Route, Link } from 'react-router-dom'
 import axios from 'axios';
 
 const NewPost = ({setPosts}) => {
-    const initialState = {instance:'',imageUpload: ''};
+    const initialState = {instance:''};
     const [postContent, setPostContent] = useState(initialState)
-    // const [instance, setInstance] = useState('')
-    // const [imageUpload, setImageUpload] = useState('')
 
     useEffect(()=>{
         getPosts();
-        // addPost();
     }, [])
 
     const getPosts = () => {
@@ -20,8 +17,6 @@ const NewPost = ({setPosts}) => {
         .then(res => {
           console.log(res)
           setPosts(res)
-        //   setInstance(res)
-        //   setImageUpload(res)
         })
         .catch(err => {
           console.error(err);
@@ -30,11 +25,22 @@ const NewPost = ({setPosts}) => {
 
     function addPost(e) {
         e.preventDefault();
-        const newPost = {
+        const newPostData = {
           instance: postContent.instance,
           imageUpload: postContent.imageUpload,
+            //   const imageData = new FormData();
+            //   imageData.append('imageUpload', postContent.imageUpload);
         };
-        axios.post("http://localhost:5000/posts/newpost", newPost)
+        // const newPostData = new FormData();
+        // newPostData.append('instance', postContent.instance);
+        // newPostData.append('imageUpload', postContent.imageUpload);
+        // console.log(newPostData)
+
+        axios.post("http://localhost:5000/posts/newpost", newPostData, 
+        // {headers: {
+        //     'Content-Type': 'multipart/form-data'
+        //   }}
+        )
         .then(res => {
             console.log(res)
             setPosts(res.data)
@@ -42,20 +48,22 @@ const NewPost = ({setPosts}) => {
         .catch(err => {
             console.error(err);
          });
-        // console.log(newPost);
-        // alert("item added");
+        console.log(newPostData);
     }
 
+    const handleImage = (e) => {
+        setPostContent({...postContent, imageUpload: e.target.files[0]});
+    }
+    
     const handleChange = (e) => {
         setPostContent({...postContent, [e.target.id]: e.target.value})
     }
-    
     return (
         <div>
-            <form >
+            <form enctype="multipart/form-data">
                 <label htmlFor="instance"/>
                 <textarea id="instance" placeholder="Type something here..."cols="30" rows="10" onChange={handleChange}></textarea>
-                <button>Add Picture</button>
+                <input type="file" name="imageUpload" accept=".png, .jpg, .jpeg" onChange={handleImage}></input>
                 <button>Add Gif</button>
                 <button onClick={addPost} type="submit">Post</button>
             </form>

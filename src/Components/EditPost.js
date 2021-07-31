@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import { Route, Link } from 'react-router-dom'
 import axios from 'axios';
 
-
 const EditPost = ({match}) => {
     const [updateData, setUpdateData] = useState([])
 
@@ -51,6 +50,7 @@ const EditPost = ({match}) => {
                 <label htmlFor="instance"/>
                 <textarea id="instance" cols="30" rows="10" onChange={handleChange}>{updateData.instance}</textarea>
                 <img src={updateData.imageUpload} alt=""/>
+                <input type="file" name="imageUpload" accept=".png, .jpg, .jpeg"></input>
                 <button>Gif</button>
                 <a href="/posts/days">Cancel</a>
                 <Link to="/posts/days" onClick={updatePost}>Update</Link>
