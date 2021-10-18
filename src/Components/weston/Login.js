@@ -28,7 +28,6 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(process.env)
         try {
             const newUser = {
                 username: formState.username,
