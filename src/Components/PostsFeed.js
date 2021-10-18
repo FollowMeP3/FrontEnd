@@ -17,6 +17,7 @@ const PostsFeed = () => {
             headers: {"auth-token": localStorage.getItem("auth-token")}
         })
         .then(res => setPosts(res.data))
+        .then(console.log(API))
     }, [])
 
     return (

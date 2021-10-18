@@ -36,7 +36,7 @@ const Login = () => {
             }
             
             const loginResponse = await axios.post(`${API}/login`, newUser)
-
+            
             setUserData({
                 token: loginResponse.data.token,
                 user: loginResponse.data.user
@@ -50,9 +50,10 @@ const Login = () => {
 
             window.location='/posts/days'
         } catch (err) {
-            err.response.data.msg
-              ? setErrorMsg(err.response.data.msg)
-              : setErrorMsg("Password Or Username Incorrect");
+            console.log(err)
+            // err.response.data.msg
+            //   ? setErrorMsg(err.response.data.msg)
+            //   : setErrorMsg("Password Or Username Incorrect");
         }
     }
 

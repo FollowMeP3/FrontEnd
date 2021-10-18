@@ -66,9 +66,10 @@ const Register =  () => {
 
             window.location='/posts/days'
         } catch(err) {
-            err.response.data.msg ?
-                setErrorMsg(err.response.data.msg) : 
-                setErrorMsg("we have eror")
+            console.log(err)
+            // err.response.data.msg ?
+            //     setErrorMsg(err.response.data.msg) : 
+            //     setErrorMsg("we have eror")
         }
     }
 

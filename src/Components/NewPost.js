@@ -24,27 +24,27 @@ const NewPost = ({setPosts}) => {
     const handleSubmit =  (e) => {
         e.preventDefault()
       
-            // console.log(post)
+            console.log(post)
             // setPost(initialState)
 
             const newPost = {
                 instance: post.instance,
-                // imageUpload: post.imageUpload,
                 postedBy: userData.user.name
+                // imageUpload: post.imageUpload,
             }
     
             axios.post(`${API}/posts/newpost/`, newPost, {
                 headers: {"auth-token": localStorage.getItem("auth-token")}
             })
-            .then((window.location = "/posts/days"))
             .then(res => console.log(res.data))
             
             console.log(post.instance)
-
+            
             setPost({
                 instance: "",
                 imageUpload: "",
             })
+            window.location = "/posts/days"
     }
 
     return (
