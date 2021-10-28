@@ -18,7 +18,7 @@ const NewPost = ({setPosts}) => {
 
     const handleChange = (e) => {
         setPost({ ...post, [e.target.id]: e.target.value })
-        // console.log(post)
+        console.log(post)
     }
 
     const handleSubmit =  (e) => {
@@ -44,7 +44,8 @@ const NewPost = ({setPosts}) => {
                 instance: "",
                 imageUpload: "",
             })
-            window.location = "/posts/days"
+            setTimeout(function(){ window.location = "/posts/days" }, 50);
+            
     }
 
     return (
